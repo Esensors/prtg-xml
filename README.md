@@ -4,9 +4,9 @@
 
 ### Download
 To install Esensors websensor XML plugin you need to download
-PRTG device template file (Esensors-Websensor-XML.odt) and
-plugin binary (choose correct binary according to the architecture:
-386 or amd64)
+from the [releases](https://github.com/Esensors/prtg-xml/releases) section:
+* PRTG device template file (Esensors-Websensor-XML.odt, comes in the Source code)
+* plugin binary (choose correct binary according to your architecture)
 
 ### Copy files
 Copy `Esensors-Websensor-XML.odt` to `C:\Program Files (x86)\PRTG Network Monitor\devicetemplates`
