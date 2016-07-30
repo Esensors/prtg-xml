@@ -48,7 +48,7 @@
           esensors-websensor-prtg.exe
         </exefilelabel>
         <exeparams>
-          --host %host --temperature
+          --host %host --sensor temperature
         </exeparams>
         <valuetype/>
         <mutexname/>
@@ -288,7 +288,7 @@
           esensors-websensor-prtg.exe
         </exefilelabel>
         <exeparams>
-          --host %host --humidity
+          --host %host --sensor humidity
         </exeparams>
         <valuetype/>
         <mutexname/>
@@ -472,7 +472,7 @@
           esensors-websensor-prtg.exe
         </exefilelabel>
         <exeparams>
-          --host %host --illumination
+          --host %host --sensor illumination
         </exeparams>
         <valuetype/>
         <mutexname/>
@@ -656,7 +656,7 @@
           esensors-websensor-prtg.exe
         </exefilelabel>
         <exeparams>
-          --host %host --voltage
+          --host %host --sensor voltage
         </exeparams>
         <valuetype/>
         <mutexname/>
@@ -840,7 +840,7 @@
           esensors-websensor-prtg.exe
         </exefilelabel>
         <exeparams>
-          --host %host --thermistor
+          --host %host --sensor thermistor
         </exeparams>
         <valuetype/>
         <mutexname/>
@@ -1024,7 +1024,7 @@
           esensors-websensor-prtg.exe
         </exefilelabel>
         <exeparams>
-          --host %host --contact
+          --host %host --sensor contact
         </exeparams>
         <valuetype/>
         <mutexname/>
@@ -1208,7 +1208,7 @@
           esensors-websensor-prtg.exe
         </exefilelabel>
         <exeparams>
-          --host %host --flood
+          --host %host --sensor flood
         </exeparams>
         <valuetype/>
         <mutexname/>

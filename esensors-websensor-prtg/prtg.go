@@ -18,14 +18,8 @@ var host = flag.String("host", "", "hostname or ip address of websensor device")
 var port = flag.Int("port", 80, "tcp port of the sensor, defaults to 80")
 var timeout = flag.Int("timeout", 15, "timeout for http request to the sensor, defaults to 15")
 var url = flag.String("url", "ssetings.xml", "url to query for sensor data, defaults to ssetings.xml")
+var sensor = flag.String("sensor", "", "name of the sensor to query")
 var allSensors = flag.Bool("all-sensors", false, "output all sensors as channels")
-var tempSensor = flag.Bool("temperature", false, "output only this parameter as a channel")
-var humSensor = flag.Bool("humidity", false, "output only this parameter as a channel")
-var illumSensor = flag.Bool("illumination", false, "output only this parameter as a channel")
-var voltageSensor = flag.Bool("voltage", false, "output only this parameter as a channel")
-var thermistorSensor = flag.Bool("thermistor", false, "output only this parameter as a channel")
-var contactSensor = flag.Bool("contact", false, "output only this parameter as a channel")
-var floodSensor = flag.Bool("flood", false, "output only this parameter as a channel")
 var debug = flag.Bool("debug", false, "")
 
 type SWSensors struct {
@@ -56,7 +50,35 @@ func main() {
 
     if (*help == true || *host == "") {
         fmt.Println(`
-esensors-websensor-prtg.exe - PRTG plugin for Esensors websensor device (XML based only)
+PRTG plugin for Esensors websensor device (XML based only)
+
+Syntax:
+    esensors-websensor-prtg.exe --host <NAME> --sensor <NAME> [options]
+
+Mandatory parameters:
+  --host <NAME>
+    address of device on network (name or IP).
+  --sensor <NAME>
+    one of: temperature, humidity, illumination,
+            voltage, thermistor, contact, flood
+
+Optional parameters:
+    --port <N>, defaults to 80
+    --timeout <M>, defaults to 15
+    --url <URL>, defaults to ssetings.xml
+    --debug, output a bit more information
+
+Special modes:
+    --all-sensors
+      outputs information for all of the sensors as channels,
+      could be used instead of --sensor parameter
+    --host <HOST:PORT/URL>
+      host parameter allows specification of almost full device URL
+      as one parameter (very useful to minimize configuration efforts)
+
+Example:
+    esensors-websensor-prtg.exe --host 24.39.65.206:4248/status.xml --sensor temperature
+
 `)
         os.Exit(0)
     }
@@ -95,7 +117,7 @@ esensors-websensor-prtg.exe - PRTG plugin for Esensors websensor device (XML bas
     xml_out = `<?xml version="1.0" encoding="UTF-8" ?>
 <prtg>`
 
-    if *allSensors || *tempSensor {
+    if *allSensors || *sensor == "temperature" {
         xml_out += `
     <result>
         <Channel>Temperature</Channel>
@@ -103,7 +125,7 @@ esensors-websensor-prtg.exe - PRTG plugin for Esensors websensor device (XML bas
         <Value>` + s.Tm0 + `</Value>
     </result>`
     }
-    if *allSensors || *humSensor {
+    if *allSensors || *sensor == "humidity" {
         xml_out = xml_out + `
     <result>
         <Channel>Humidity</Channel>
@@ -111,7 +133,7 @@ esensors-websensor-prtg.exe - PRTG plugin for Esensors websensor device (XML bas
         <Value>` + s.Hu0 + `</Value>
     </result>`
     }
-    if *allSensors || *illumSensor {
+    if *allSensors || *sensor == "illumination" {
         xml_out = xml_out + `
     <result>
         <Channel>Illumination</Channel>
@@ -119,7 +141,7 @@ esensors-websensor-prtg.exe - PRTG plugin for Esensors websensor device (XML bas
         <Value>` + s.Il0 + `</Value>
     </result>`
     }
-    if *allSensors || *voltageSensor {
+    if *allSensors || *sensor == "voltage" {
         xml_out = xml_out + `
     <result>
         <Channel>Voltage</Channel>
@@ -127,7 +149,7 @@ esensors-websensor-prtg.exe - PRTG plugin for Esensors websensor device (XML bas
         <Value>` + s.Vin + `</Value>
     </result>`
     }
-    if *allSensors || *thermistorSensor {
+    if *allSensors || *sensor == "thermistor" {
         xml_out = xml_out + `
     <result>
         <Channel>Thermistor</Channel>
@@ -135,14 +157,14 @@ esensors-websensor-prtg.exe - PRTG plugin for Esensors websensor device (XML bas
         <Value>` + s.Thm + `</Value>
     </result>`
     }
-    if *allSensors || *contactSensor {
+    if *allSensors || *sensor == "contact" {
         xml_out = xml_out + `
     <result>
         <Channel>Contact</Channel>
         <Value>` + s.Cin + `</Value>
     </result>`
     }
-    if *allSensors || *floodSensor {
+    if *allSensors || *sensor == "flood" {
         xml_out = xml_out + `
     <result>
         <Channel>Flood</Channel>
