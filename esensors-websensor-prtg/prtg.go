@@ -84,7 +84,7 @@ Example:
     }
 
     var full_url = *host
-    if strings.Contains(*host, ":") == false {
+    if strings.Contains(*host, ":") == false && *port != 80 {
         full_url = full_url + ":" + strconv.Itoa(*port)
     }
     if strings.Contains(*host, "/") == false {
@@ -99,13 +99,13 @@ Example:
     }
     resp, err := client.Get(full_url)
     if err != nil {
-        log.Fatal("Error connecting to sensor:", err)
+        log.Fatal("Error connecting to sensor [", full_url, "]: ", err)
     }
     
     defer resp.Body.Close()
     body, err := ioutil.ReadAll(resp.Body)
     if err != nil {
-        log.Fatal("Error reading from sensor:", err)
+        log.Fatal("Error reading from sensor [", full_url, "]: ", err)
     }
 
     debug_print("got response from the sensor:" + string(body))
