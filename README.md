@@ -20,3 +20,16 @@ from the [releases](https://github.com/Esensors/prtg-xml/releases) section:
   e.g. `24.39.65.206:4248/status.xml`
 * Choose "Automatic sensor creation using specific device template in "Sensor Management"
 * Choose "Esensors-Websensor-XML" device template
+
+
+## Investigating issues
+
+### XML: The returned xml does not match the expected schema. (code: PE233)
+
+To investigate this issue please:
+* click the failing sensor
+* choose Settings button
+* in the "SENSOR SETTINGS" section, item "EXE Result" mark "Write EXE result to disk"
+* let the sensor run (wait for the period of execution, "Scanning Interval" on the same screen)
+* collect all the files from `%programdata%\Paessler\PRTG Network Monitor\Logs (Sensors)`
+* send to support for review
