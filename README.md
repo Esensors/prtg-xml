@@ -1,5 +1,12 @@
 # Esensors websensor XML plugin for PRTG Network Monitor
 
+* [Configuring PRTG Network Monitor](#configuring-prtg-network-monitor)
+  * [Download](#download)
+  * [Copy files](#copy-files)
+  * [Adding device](#adding-device)
+* [Investigating issues](#investigating-issues)
+  * [XML: The returned xml does not match the expected schema. (code: PE233)](#xml-the-returned-xml-does-not-match-the-expected-schema-code-pe233)
+
 ## Configuring PRTG Network Monitor
 
 ### Download
