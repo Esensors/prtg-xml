@@ -15,6 +15,8 @@ from the [releases](https://github.com/Esensors/prtg-xml/releases) section:
 * PRTG device template file (Esensors-Websensor-XML.odt, comes in the Source code)
 * plugin binary (choose correct binary according to your architecture)
 
+**Make sure to download files from the latest release.**
+
 ### Copy files
 * copy `Esensors-Websensor-XML.odt` to `C:\Program Files (x86)\PRTG Network Monitor\devicetemplates`
 * copy `esensors-websensor-prtg.exe` to `C:\Program Files (x86)\PRTG Network Monitor\Custom Sensors\EXEXML`
