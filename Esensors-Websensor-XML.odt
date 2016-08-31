@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
   <devicetemplate id="custom" name="Esensors-Websensor-XML" priority="1">
     <check id="ping" meta="ping"/>
     <create id="{66B3E376-2E83-4A8A-8A3A-516B661A3483}" kind="exexml" displayname="Temperature">
@@ -63,6 +63,9 @@
       <channeldata primary="2" modulo="0" fix="-1" sum="-1" v="1">
         <downchannel id="-4">
           <data>
+            <avgmode>
+              0
+            </avgmode>
             <axismode>
               0
             </axismode>
@@ -150,9 +153,12 @@
               <decimalmode>
                 1
               </decimalmode>
-              <id>
-                2
-              </id>
+              <factord>
+                1
+              </factord>
+              <factorm>
+                1
+              </factorm>
               <kind>
                 Custom
               </kind>
@@ -303,6 +309,9 @@
       <channeldata primary="2" modulo="0" fix="-1" sum="-1" v="1">
         <downchannel id="-4">
           <data>
+            <avgmode>
+              0
+            </avgmode>
             <axismode>
               0
             </axismode>
@@ -380,9 +389,12 @@
               <decimalmode>
                 1
               </decimalmode>
-              <id>
-                2
-              </id>
+              <factord>
+                1
+              </factord>
+              <factorm>
+                1
+              </factorm>
               <kind>
                 Custom
               </kind>
@@ -399,7 +411,7 @@
                 Humidity
               </name>
               <namereadonly>
-                0
+                1
               </namereadonly>
               <nostack>
                 0
@@ -487,6 +499,9 @@
       <channeldata primary="2" modulo="0" fix="-1" sum="-1" v="1">
         <downchannel id="-4">
           <data>
+            <avgmode>
+              0
+            </avgmode>
             <axismode>
               0
             </axismode>
@@ -564,9 +579,12 @@
               <decimalmode>
                 1
               </decimalmode>
-              <id>
-                2
-              </id>
+              <factord>
+                1
+              </factord>
+              <factorm>
+                1
+              </factorm>
               <kind>
                 Custom
               </kind>
@@ -583,7 +601,7 @@
                 Illumination
               </name>
               <namereadonly>
-                0
+                1
               </namereadonly>
               <nostack>
                 0
@@ -671,6 +689,9 @@
       <channeldata primary="2" modulo="0" fix="-1" sum="-1" v="1">
         <downchannel id="-4">
           <data>
+            <avgmode>
+              0
+            </avgmode>
             <axismode>
               0
             </axismode>
@@ -748,9 +769,12 @@
               <decimalmode>
                 1
               </decimalmode>
-              <id>
-                2
-              </id>
+              <factord>
+                1
+              </factord>
+              <factorm>
+                1
+              </factorm>
               <kind>
                 Custom
               </kind>
@@ -767,7 +791,7 @@
                 Voltage
               </name>
               <namereadonly>
-                0
+                1
               </namereadonly>
               <nostack>
                 0
@@ -855,6 +879,9 @@
       <channeldata primary="2" modulo="0" fix="-1" sum="-1" v="1">
         <downchannel id="-4">
           <data>
+            <avgmode>
+              0
+            </avgmode>
             <axismode>
               0
             </axismode>
@@ -932,9 +959,12 @@
               <decimalmode>
                 1
               </decimalmode>
-              <id>
-                2
-              </id>
+              <factord>
+                1
+              </factord>
+              <factorm>
+                1
+              </factorm>
               <kind>
                 Custom
               </kind>
@@ -951,7 +981,7 @@
                 Thermistor
               </name>
               <namereadonly>
-                0
+                1
               </namereadonly>
               <nostack>
                 0
@@ -1039,6 +1069,9 @@
       <channeldata primary="2" modulo="0" fix="-1" sum="-1" v="1">
         <downchannel id="-4">
           <data>
+            <avgmode>
+              0
+            </avgmode>
             <axismode>
               0
             </axismode>
@@ -1116,9 +1149,12 @@
               <decimalmode>
                 0
               </decimalmode>
-              <id>
-                2
-              </id>
+              <factord>
+                1
+              </factord>
+              <factorm>
+                1
+              </factorm>
               <kind>
                 Custom
               </kind>
@@ -1135,7 +1171,7 @@
                 Contact
               </name>
               <namereadonly>
-                0
+                1
               </namereadonly>
               <nostack>
                 0
@@ -1209,6 +1245,196 @@
         </exefilelabel>
         <exeparams>
           --host %host --sensor flood
+        </exeparams>
+        <valuetype/>
+        <mutexname/>
+        <unit/>
+        <usewindowsauthentication>
+          0
+        </usewindowsauthentication>
+        <environment>
+          0
+        </environment>
+      </createdata>
+      <channeldata primary="2" modulo="0" fix="-1" sum="-1" v="1">
+        <downchannel id="-4">
+          <data>
+            <avgmode>
+              0
+            </avgmode>
+            <axismode>
+              0
+            </axismode>
+            <colmode>
+              0
+            </colmode>
+            <decimaldigits>
+              2
+            </decimaldigits>
+            <decimalmode>
+              0
+            </decimalmode>
+            <kind>
+              Percent
+            </kind>
+            <limitmode>
+              0
+            </limitmode>
+            <linewidth>
+              1
+            </linewidth>
+            <mode>
+              Absolute
+            </mode>
+            <name>
+              Downtime
+            </name>
+            <namereadonly>
+              0
+            </namereadonly>
+            <nostack>
+              0
+            </nostack>
+            <percent>
+              0
+            </percent>
+            <show>
+              1
+            </show>
+            <showchart>
+              1
+            </showchart>
+            <speedsize>
+              None
+            </speedsize>
+            <speedtime>
+              None
+            </speedtime>
+            <spikemode>
+              0
+            </spikemode>
+            <volumesize>
+              None
+            </volumesize>
+          </data>
+        </downchannel>
+        <list>
+          <channel id="2">
+            <data>
+              <avgmode>
+                0
+              </avgmode>
+              <axismode>
+                0
+              </axismode>
+              <colmode>
+                0
+              </colmode>
+              <customunit>
+                #
+              </customunit>
+              <decimaldigits>
+                2
+              </decimaldigits>
+              <decimalmode>
+                0
+              </decimalmode>
+              <factord>
+                1
+              </factord>
+              <factorm>
+                1
+              </factorm>
+              <kind>
+                Custom
+              </kind>
+              <limitmode>
+                0
+              </limitmode>
+              <linewidth>
+                1
+              </linewidth>
+              <mode>
+                Absolute
+              </mode>
+              <name>
+                Flood
+              </name>
+              <namereadonly>
+                1
+              </namereadonly>
+              <nostack>
+                0
+              </nostack>
+              <percent>
+                0
+              </percent>
+              <show>
+                1
+              </show>
+              <showchart>
+                1
+              </showchart>
+              <speedsize>
+                One
+              </speedsize>
+              <speedtime>
+                Second
+              </speedtime>
+              <spikemode>
+                0
+              </spikemode>
+              <volumesize>
+                One
+              </volumesize>
+            </data>
+          </channel>
+        </list>
+      </channeldata>
+      <triggerdata/>
+    </create>
+    <create id="{EF727006-A777-4F81-B042-80FF6DAF713E}" kind="exexml" displayname="Alarm">
+      <createdata>
+        <timeout>
+          60
+        </timeout>
+        <tags>
+          xmlexesensor
+        </tags>
+        <priority>
+          3
+        </priority>
+        <comments/>
+        <primarychannel>
+          2
+        </primarychannel>
+        <position>
+          80
+        </position>
+        <inherittriggers>
+          <flags>
+            <inherited/>
+          </flags>
+          <cell>
+            1
+          </cell>
+        </inherittriggers>
+        <stack>
+          0
+        </stack>
+        <exefile>
+          <cell col="0">
+            esensors-websensor-prtg.exe
+          </cell>
+          <cell col="1">
+            esensors-websensor-prtg.exe
+          </cell>
+        </exefile>
+        <exefilelabel>
+          esensors-websensor-prtg.exe
+        </exefilelabel>
+        <exeparams>
+          --host %host --sensor alarm
         </exeparams>
         <valuetype/>
         <mutexname/>
@@ -1316,10 +1542,10 @@
                 Absolute
               </mode>
               <name>
-                Flood
+                Alarm
               </name>
               <namereadonly>
-                0
+                1
               </namereadonly>
               <nostack>
                 0

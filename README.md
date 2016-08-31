@@ -22,14 +22,14 @@ from the [releases](https://github.com/Esensors/prtg-xml/releases) section:
 * copy `esensors-websensor-prtg.exe` to `C:\Program Files (x86)\PRTG Network Monitor\Custom Sensors\EXEXML`
 
 ### Adding device
-* Start PRTG Enterprise Console
-* Right-click Local Probe and choose "Add Device"
-* Choose suitable device name (e.g. Websensor)
+* Start PRTG Enterprise Console or PRTG Network Monitor (Web UI)
+* Right-click your probe (in case of one server installation - Local Probe) and choose "Add Device"
+* Enter device name (e.g. Websensor in my Basement)
 * In the "IPv4 Address/DNS Name enter HOST:PORT/URL (without http),
   e.g. `24.39.65.206:4248/status.xml`
 * Choose "Automatic sensor creation using specific device template in "Sensor Management"
 * Choose "Esensors-Websensor-XML" device template
-
+* Click "Continue" button 
 
 ## Investigating issues
 
