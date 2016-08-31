@@ -1,7 +1,6 @@
 package main
 
 import (
-    "encoding/xml"
     "flag"
     "fmt"
     "io/ioutil"
@@ -11,44 +10,30 @@ import (
     "strconv"
     "strings"
     "time"
+    "github.com/esensors/prtg-xml/esensors-websensor-prtg/my_state"
+    "github.com/esensors/prtg-xml/esensors-websensor-prtg/parse_xml"
 )
 
-var help = flag.Bool("help", false, "specify to get help about the plugin")
-var host = flag.String("host", "", "hostname or ip address of websensor device")
-var port = flag.Int("port", 80, "tcp port of the sensor, defaults to 80")
-var timeout = flag.Int("timeout", 15, "timeout for http request to the sensor, defaults to 15")
-var url = flag.String("url", "ssetings.xml", "url to query for sensor data, defaults to ssetings.xml")
-var sensor = flag.String("sensor", "", "name of the sensor to query")
-var allSensors = flag.Bool("all-sensors", false, "output all sensors as channels")
-var debug = flag.Bool("debug", false, "")
-
-type SWSensors struct {
-    Sht string `xml:"sht"`
-    Tm0 string `xml:"tm0"`
-    Tun0 string `xml:"tun0"`
-    Hu0 string `xml:"hu0"`
-    Ilum string `xml:"ilum"`
-    Il0 string `xml:"il0"`
-    Evin string `xml:"evin"`
-    Vin string `xml:"vin"`
-    Ethm string `xml:"ethm"`
-    Thm string `xml:"thm"`
-    Ecin string `xml:"ecin"`
-    Cin string `xml:"cin"`
-    Efld string `xml:"efld"`
-    Fin string `xml:"fin"`
-}
+var st my_state.My_state 
 
 func debug_print(msg string) {
-    if *debug == true {
+    if *st.Debug == true {
         fmt.Println(msg)
     }
 }
 
 func main() {
+    st.Help = flag.Bool("help", false, "specify to get help about the plugin")
+    st.Host = flag.String("host", "", "hostname or ip address of websensor device")
+    st.Port = flag.Int("port", 80, "tcp port of the sensor, defaults to 80")
+    st.Timeout = flag.Int("timeout", 15, "timeout for http request to the sensor, defaults to 15")
+    st.Url = flag.String("url", "ssetings.xml", "url to query for sensor data, defaults to ssetings.xml")
+    st.Sensor = flag.String("sensor", "", "name of the sensor to query")
+    st.AllSensors = flag.Bool("all-sensors", false, "output all sensors as channels")
+    st.Debug = flag.Bool("debug", false, "")
     flag.Parse()
 
-    if (*help == true || *host == "") {
+    if (*st.Help == true || *st.Host == "") {
         fmt.Println(`
 PRTG plugin for Esensors websensor device (XML based only)
 
@@ -60,7 +45,7 @@ Mandatory parameters:
     address of device on network (name or IP).
   --sensor <NAME>
     one of: temperature, humidity, illumination,
-            voltage, thermistor, contact, flood
+            voltage, thermistor, contact, flood, alarm
 
 Optional parameters:
     --port <N>, defaults to 80
@@ -83,19 +68,19 @@ Example:
         os.Exit(0)
     }
 
-    var full_url = *host
-    if strings.Contains(*host, ":") == false && *port != 80 {
-        full_url = full_url + ":" + strconv.Itoa(*port)
+    var full_url = *st.Host
+    if strings.Contains(*st.Host, ":") == false && *st.Port != 80 {
+        full_url = full_url + ":" + strconv.Itoa(*st.Port)
     }
-    if strings.Contains(*host, "/") == false {
-        full_url = full_url + "/" + *url
+    if strings.Contains(*st.Host, "/") == false {
+        full_url = full_url + "/" + *st.Url
     }
 
     full_url = "http://" + full_url
     debug_print("initiating HTTP request to " + full_url)
 
     client := &http.Client {
-        Timeout: time.Duration(*timeout) * time.Second,
+        Timeout: time.Duration(*st.Timeout) * time.Second,
     }
     resp, err := client.Get(full_url)
     if err != nil {
@@ -110,70 +95,7 @@ Example:
 
     debug_print("got response from the sensor:" + string(body))
 
-    var s SWSensors
-    xml.Unmarshal(body, &s)
-
-    var xml_out string
-    xml_out = `<?xml version="1.0" encoding="UTF-8" ?>
-<prtg>`
-
-    if *allSensors || *sensor == "temperature" {
-        xml_out += `
-    <result>
-        <Channel>Temperature</Channel>
-        <Float>1</Float>
-        <Value>` + s.Tm0 + `</Value>
-    </result>`
-    }
-    if *allSensors || *sensor == "humidity" {
-        xml_out = xml_out + `
-    <result>
-        <Channel>Humidity</Channel>
-        <Float>1</Float>
-        <Value>` + s.Hu0 + `</Value>
-    </result>`
-    }
-    if *allSensors || *sensor == "illumination" {
-        xml_out = xml_out + `
-    <result>
-        <Channel>Illumination</Channel>
-        <Float>1</Float>
-        <Value>` + s.Il0 + `</Value>
-    </result>`
-    }
-    if *allSensors || *sensor == "voltage" {
-        xml_out = xml_out + `
-    <result>
-        <Channel>Voltage</Channel>
-        <Float>1</Float>
-        <Value>` + s.Vin + `</Value>
-    </result>`
-    }
-    if *allSensors || *sensor == "thermistor" {
-        xml_out = xml_out + `
-    <result>
-        <Channel>Thermistor</Channel>
-        <Float>1</Float>
-        <Value>` + s.Thm + `</Value>
-    </result>`
-    }
-    if *allSensors || *sensor == "contact" {
-        xml_out = xml_out + `
-    <result>
-        <Channel>Contact</Channel>
-        <Value>` + s.Cin + `</Value>
-    </result>`
-    }
-    if *allSensors || *sensor == "flood" {
-        xml_out = xml_out + `
-    <result>
-        <Channel>Flood</Channel>
-        <Value>` + s.Fin + `</Value>
-    </result>`
-    }
-    xml_out = xml_out + `
-</prtg>
-`
+    xml_out := parse_xml.Parse(body, st)
 
     fmt.Println(xml_out)
     os.Exit(0)
