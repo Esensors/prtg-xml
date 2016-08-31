@@ -1449,6 +1449,9 @@
       <channeldata primary="2" modulo="0" fix="-1" sum="-1" v="1">
         <downchannel id="-4">
           <data>
+            <avgmode>
+              0
+            </avgmode>
             <axismode>
               0
             </axismode>
@@ -1511,6 +1514,16 @@
               <avgmode>
                 0
               </avgmode>
+              <axismax>
+                <cell col="1">
+                  1
+                </cell>
+              </axismax>
+              <axismin>
+                <cell col="1">
+                  1
+                </cell>
+              </axismin>
               <axismode>
                 0
               </axismode>
@@ -1526,14 +1539,37 @@
               <decimalmode>
                 0
               </decimalmode>
-              <id>
-                2
-              </id>
+              <factord>
+                1
+              </factord>
+              <factorm>
+                1
+              </factorm>
               <kind>
                 Custom
               </kind>
+              <limitmaxerror>
+                <cell col="0">
+                  0
+                </cell>
+              </limitmaxerror>
+              <limitmaxwarning>
+                <cell col="1">
+                  1
+                </cell>
+              </limitmaxwarning>
+              <limitminerror>
+                <cell col="0">
+                  0
+                </cell>
+              </limitminerror>
+              <limitminwarning>
+                <cell col="1">
+                  1
+                </cell>
+              </limitminwarning>
               <limitmode>
-                0
+                1
               </limitmode>
               <linewidth>
                 1
@@ -1553,6 +1589,11 @@
               <percent>
                 0
               </percent>
+              <ref100percent>
+                <cell col="1">
+                  1
+                </cell>
+              </ref100percent>
               <show>
                 1
               </show>
@@ -1565,6 +1606,16 @@
               <speedtime>
                 Second
               </speedtime>
+              <spikemax>
+                <cell col="1">
+                  1
+                </cell>
+              </spikemax>
+              <spikemin>
+                <cell col="1">
+                  1
+                </cell>
+              </spikemin>
               <spikemode>
                 0
               </spikemode>
